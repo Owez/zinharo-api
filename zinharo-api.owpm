@@ -1,0 +1,13 @@
+desc = "API for Zinharo"
+version = "0.1.0"
+lockfile_hash = ""
+
+[packages]
+flask = "*"
+flask-limiter = "*"
+flask-sqlalchemy = "*"
+webargs = "*"
+flask-restful = "*"
+flask-bcrypt = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"

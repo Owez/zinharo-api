@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block headers %}{% endblock %}
+    <title>Zinharo</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav-inner">
+            <a href="{{ url_for('frontend.server') }}" class="navlink">Donate server-power</a>
+        </div>
+        <div class="nav-inner">
+            <h1><a href="{{ url_for('frontend.index') }}" class="nav-link">Zinharo</a></h1>
+        </div>
+        <div class="nav-inner">
+            <a href="{{ url_for('frontend.contact') }}" class="navlink">Contact</a>
+        </div>
+    </div>
+    <div id="alertbox"></div>
+    {% block content %}{% endblock %}
+    <div>
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+        {% block scripts %}{% endblock %}
+    </div>
+</body>
+
+</html>
