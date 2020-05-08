@@ -22,6 +22,11 @@ def notice():
 
     return render_template("notice.html")
 
+@frontend_blueprint.route("/admin")
+def hackjoke():
+    """Call potential hackers out"""
+
+    return render_template("hackjoke.html")
 
 @frontend_blueprint.route("/contact")
 def contact():

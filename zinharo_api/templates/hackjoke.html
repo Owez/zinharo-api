@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--todo patch n polish-->
+<div class="container">
+    <h1>Admin login</h1>
+    <input type="text" placeholder="Username" id="YXJlIHJlYWxseSB0aGlzIGd1bGxhYmxlPyAoaWYgeW91IGZpbmQgdGhpcywgZ3Vlc3Mgbm90KQ==">
+    <input type="password" placeholder="Password" id="ZnVja2luZyBoZWxsIGxvb2tpbmcgYXQgdGhlIHBhc3N3b3JkIHRvbz8gc21hcnQgYXJzZQ==">
+    <button onclick="login()">Login</button>
+    <!--admin,qwerty123-->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/adminlogin.js') }}"></script>
+{% endblock %}

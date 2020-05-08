@@ -1,3 +1,7 @@
+const RED = "bd3e3e"
+const YELLOW = "ff9933"
+const GREEN = "009933"
+
 function add_alert(title, content, hex_colour) {
     var new_title = document.createElement("h4")
     var new_content = document.createElement("p")

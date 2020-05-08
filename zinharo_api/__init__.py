@@ -26,7 +26,6 @@ limiter = Limiter(
 )  # API ratelimit
 
 
-
 @app.errorhandler(404)
 def error_404(_exception):
     """404 error handling"""
@@ -41,10 +40,18 @@ def api_minversion():
     return {"status": "success", "body": {"min_version": config.MIN_API_VERSION}}, 200
 
 
+@limiter.limit("1 per year")
+@app.route(f"/{config.API_PREFIX}/adminauth/")
+def fake_adminauth():
+    """Joke designed to annoy and throw people off"""
+
+    return "Just contact me instead of falling for my obvious trap..", 200
+
+
 # NOTE: keep imports here
 from .routes.frontend import frontend_blueprint
-from .routes.report import report_api_blueprint # TODO: test with postman
-from .routes.client import client_api_blueprint # TODO: test with postman
+from .routes.report import report_api_blueprint  # TODO: test with postman
+from .routes.client import client_api_blueprint  # TODO: test with postman
 from .routes.auth import auth_api_blueprint
 from .routes.hash import hash_api_blueprint
 from .routes.job import job_api_blueprint

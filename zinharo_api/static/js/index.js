@@ -1,7 +1,3 @@
-const RED = "bd3e3e"
-const YELLOW = "ff9933"
-const GREEN = "009933"
-
 function new_hash(pcap) {
     var xhr = new XMLHttpRequest()
 
