@@ -15,7 +15,7 @@ class AuthApi(Resource):
     """Authorization path for clients to sign up and log in to get their jwt
     session tokens"""
 
-    decorators = [limiter.limit("1 per hour, 2 per day", methods=["POST"])]
+    decorators = [limiter.limit("2 per minute, 4 per day", methods=["POST"])]
 
     @use_args(AuthPostSchema())
     def post(self, args):
