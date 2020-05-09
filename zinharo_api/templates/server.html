@@ -4,11 +4,15 @@
 <div class="container">
     <h1>Want to help the cracking cause?</h1>
     <p>Zinharo is designed to be a lightweight distributed computing framework, allowing servers or computers of any
-        kind to contribute to cracking pcap files. If you would like to help us with these efforts and flaunt server
-        power, you may download the <a href="https://gitlab.com/zinharo/zinharo-client">open-source</a> Zinharo Client
-        located below</p>
-    <button
-        onclick="add_alert('Coming soon', 'Zinharo Client is not avalible for download just yet.. Come back soon!', 'ff9933')">Download
-        now</button>
+        kind to contribute to cracking pcap files. If you would like to help us with these efforts and flaunt your
+        server power, you may download the Zinharo Client located below:</p>
+    <button onclick="window.location.href = 'https://zinharo.com/client/linux';">Download for Linux</button>
+    <br><br>
+    <button onclick="window.location.href = 'https://zinharo.com/client/windows';">Download for Windows</button>
+    <p>Setup is easy, to signup to the Zinahro network just add a username by setting the `ZINHARO_USERNAME` environment
+        variable and the same for the password with `ZINHARO_PASSWORD`. The final environment variable that needs to be
+        set is `ZINHARO_SIGNUP`, which has to be "true" (e.g. on Linux: `export ZINHARO_SIGNUP=true`). The rest is a
+        completely automated process and can simply be left on using <a
+            href="https://linux.101hacks.com/unix/nohup-command/">nohup</a>/windows equivalent!</p>
 </div>
 {% endblock %}

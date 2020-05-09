@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_file
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_sqlalchemy import SQLAlchemy
@@ -38,6 +38,26 @@ def api_minversion():
     """A simple auxillary route to provide the minimum API client version"""
 
     return {"status": "success", "body": {"min_version": config.MIN_API_VERSION}}, 200
+
+
+@limiter.limit("2 per minute, 10 per day")
+@app.route("/client/linux")
+def download_linux():
+    """Downloads linux client for user"""
+
+    path = "zinharo-client-linux.zip"
+
+    return send_file(path, as_attachment=True)
+
+
+@limiter.limit("2 per minute, 10 per day")
+@app.route("/client/windows")
+def download_windows():
+    """Downloads windows client for user"""
+
+    path = "zinharo-client-windows.zip"
+
+    return send_file(path, as_attachment=True)
 
 
 @limiter.limit("1 per year")
