@@ -5,7 +5,7 @@ function login() {
     if (username == "admin" && password == "qwerty123") { // needs better auth for production
         var xhr = new XMLHttpRequest()
 
-        xhr.open("GET", "http://127.0.0.1:5000/api/adminauth/", false)
+        xhr.open("GET", "https://zinharo.com/api/adminauth/", false)
         xhr.setRequestHeader('Content-Type', 'application/json')
     
         xhr.onloadend = function () {

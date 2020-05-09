@@ -1,7 +1,7 @@
 function get_cap() {
     var id = Number(document.getElementById("hidden-id").textContent)
 
-    const target = new URL('http://127.0.0.1:5000/api/hash/');
+    const target = new URL('https://zinharo.com/api/hash/');
     const params = new URLSearchParams();
     params.set("id", id);
     target.search = params.toString();

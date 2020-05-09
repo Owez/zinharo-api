@@ -1,7 +1,7 @@
 function new_hash(cap) {
     var xhr = new XMLHttpRequest()
 
-    xhr.open("POST", "http://127.0.0.1:5000/api/hash/", false)
+    xhr.open("POST", "https://zinharo.com/api/hash/", false)
     xhr.setRequestHeader('Content-Type', 'application/json')
 
     xhr.onloadend = function () {
