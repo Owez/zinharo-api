@@ -18,7 +18,7 @@ class JobApi(Resource):
 
     decorators = [
         limiter.limit("2 per minute", methods=["POST"]),
-        limiter.limit("10 per minute, 25 per hour", methods=["GET"]),
+        limiter.limit("5 per minute, 35 per hour", methods=["GET"]),
     ]
 
     @jwt_required
