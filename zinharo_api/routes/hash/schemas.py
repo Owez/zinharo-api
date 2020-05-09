@@ -4,7 +4,7 @@ from zinharo_api import ma
 class HashPostSchema(ma.Schema):
     """Schema for adding a hash"""
 
-    pcap = ma.String(required=True, validate=fields.validate.Length(max=3500000)) # base64 only, max 2.5mb
+    cap = ma.String(required=True, validate=fields.validate.Length(max=3500000)) # base64 only, max 2.5mb
 
     class Meta:
         strict = True

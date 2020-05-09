@@ -1,4 +1,4 @@
-function get_pcap() {
+function get_cap() {
     var id = Number(document.getElementById("hidden-id").textContent)
 
     const target = new URL('http://127.0.0.1:5000/api/hash/');
@@ -21,19 +21,19 @@ function get_pcap() {
         var content = document.createElement("p")
 
         if (xhr.status == 404) {
-            title.innerHTML = "Given pcap was not found!"
-            content.innerHTML = "The pcap given (#" + id + ") was not found! Please try a different pcap id or submitting your pcap again."
+            title.innerHTML = "Given cap was not found!"
+            content.innerHTML = "The cap given (#" + id + ") was not found! Please try a different cap id or submitting your cap again."
         }
         else if (xhr.status == 200) {
             var hash = JSON.parse(xhr.responseText).body.hash
 
-            var content_created = "<h3>Added</h3><p>This pcap was added on the date " + hash.created.split("T")[0].split("-").join("/") + "</p>"
+            var content_created = "<h3>Added</h3><p>This cap was added on the date " + hash.created.split("T")[0].split("-").join("/") + "</p>"
 
             if (hash.jobs.length == 0) {
-                var content_jobs = "<h3>Cracks</h3><p>There are currently no cracks for this pcap</p>"
+                var content_jobs = "<h3>Cracks</h3><p>There are currently no cracks for this cap</p>"
             }
             else {
-                var job_desc = "<h3>Cracks</h3><p>There have been " + hash.jobs.length + " crack(s) for this pcap file:</p>"
+                var job_desc = "<h3>Cracks</h3><p>There have been " + hash.jobs.length + " crack(s) for this cap file:</p>"
                 var joblist = "<ul>"
 
                 hash.jobs.forEach(job => {
@@ -46,17 +46,17 @@ function get_pcap() {
             }
 
             if (hash.reports.length == 0) {
-                var content_reports = "<h3>Reports</h3><p>Nobody has reported this pcap file yet. If there are completed cracks, it means that this is most likely a valid pcap file!</p>"
+                var content_reports = "<h3>Reports</h3><p>Nobody has reported this cap file yet. If there are completed cracks, it means that this is most likely a valid cap file!</p>"
             }
             else {
-                var report_desc = "<h3>Reports</h3><p>This pcap file has been reported " + hash.reports.length + " time(s), here are the reports:</p>"
+                var report_desc = "<h3>Reports</h3><p>This cap file has been reported " + hash.reports.length + " time(s), here are the reports:</p>"
                 var reportlist = "<ul>"
 
                 hash.reports.forEach(report => {
                     if (report.info) {
-                        reportlist += "<li>Client " + report.client_id + " reported this pcap file with the following infomation: \"" + report.info + "\".</li>"
+                        reportlist += "<li>Client " + report.client_id + " reported this cap file with the following infomation: \"" + report.info + "\".</li>"
                     } else {
-                        reportlist += "<li>Client " + report.client_id + " reported this pcap file but provided no infomation.</li>"
+                        reportlist += "<li>Client " + report.client_id + " reported this cap file but provided no infomation.</li>"
                     }
                 })
 
@@ -65,18 +65,18 @@ function get_pcap() {
                 var content_reports = report_desc + reportlist
             }
 
-            var content_pcap_body = "<h3>Body of pcap</h3><p>Below is the body of this pcap in base64 form. This can be up to 2.5mb so it may be long!</p><p class=\"pcap-body\">" + hash.pcap + "</p>"
+            var content_cap_body = "<h3>Body of cap</h3><p>Below is the body of this cap in base64 form. This can be up to 2.5mb so it may be long!</p><p class=\"cap-body\">" + hash.cap + "</p>"
 
-            title.innerHTML = "About pcap " + id
-            content.innerHTML = content_created + content_jobs + content_reports + content_pcap_body
+            title.innerHTML = "About cap " + id
+            content.innerHTML = content_created + content_jobs + content_reports + content_cap_body
         }
         else if (xhr.status == 429) {
             title.innerHTML = "Rate limited"
-            content.innerHTML = "You have been requesting too many pcap files at once! Please slow down or if you think this is a mistake, <a href=\"https://zinharo.com/contact\">contact me</a>."
+            content.innerHTML = "You have been requesting too many cap files at once! Please slow down or if you think this is a mistake, <a href=\"https://zinharo.com/contact\">contact me</a>."
         }
         else {
-            title.innerHTML = "Unknown error " + xhr.status + " when retreiving pcap " + id
-            content.innerHTML = "There was an unknown error: `" + xhr.statusText + "` when retriving pcap " + id + "!"
+            title.innerHTML = "Unknown error " + xhr.status + " when retreiving cap " + id
+            content.innerHTML = "There was an unknown error: `" + xhr.statusText + "` when retriving cap " + id + "!"
         }
 
         hashinfo.appendChild(title)
@@ -87,4 +87,4 @@ function get_pcap() {
 }
 
 console.log("`hash.js` loaded!")
-get_pcap()
+get_cap()

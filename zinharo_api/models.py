@@ -6,15 +6,15 @@ class Hash(db.Model):
     """A wifi hash with optional cracked counterpart"""
 
     id = db.Column(db.Integer, primary_key=True)
-    pcap = db.Column(
+    cap = db.Column(
         db.String(3500000), nullable=False
     )  # stored in string as base64, max 2.5mb
     jobs = db.relationship("Job")  # passwords
     reports = db.relationship("Report")
     created = db.Column(db.DateTime, nullable=False)
 
-    def __init__(self, pcap: str, password: str = None):
-        self.pcap = pcap
+    def __init__(self, cap: str, password: str = None):
+        self.cap = cap
 
         if password:
             self.password = password

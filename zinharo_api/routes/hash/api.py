@@ -33,15 +33,15 @@ class HashApi(Resource):
 
         try:
             base64.b64decode(
-                args["pcap"]
+                args["cap"]
             )  # decode to ensure valid base64 (but don't use it)
         except:
             return {"status": "not valid base64"}, 400
 
-        got_hash = Hash.query.filter_by(pcap=args["pcap"]).first()
+        got_hash = Hash.query.filter_by(cap=args["cap"]).first()
 
         if got_hash is None:
-            got_hash = Hash(args["pcap"])
+            got_hash = Hash(args["cap"])
 
             db.session.add(got_hash)
             db.session.commit()

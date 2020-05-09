@@ -35,8 +35,8 @@ def contact():
     return render_template("contact.html")
 
 
-@frontend_blueprint.route("/pcap/<id>")
-def pcap_detail(id: int):
-    """Detail for a specific pcap"""
+@frontend_blueprint.route("/cap/<id>")
+def cap_detail(id: int):
+    """Detail for a specific cap"""
 
-    return render_template("pcap.html", id=id)
+    return render_template("cap.html", id=id)

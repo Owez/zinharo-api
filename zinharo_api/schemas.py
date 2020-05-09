@@ -30,7 +30,7 @@ class HashSchema(ma.Schema):
     created = ma.DateTime(format="%Y-%m-%dT%H:%M:%S+00:00")
 
     class Meta:
-        fields = ("id", "pcap", "passwords", "created", "jobs", "reports")
+        fields = ("id", "cap", "passwords", "created", "jobs", "reports")
 
 
 class ClientSchema(ma.Schema):
@@ -52,7 +52,7 @@ class JobQueuedSchema(ma.Schema):
     created = ma.DateTime(format="%Y-%m-%dT%H:%M:%S+00:00")
 
     class Meta:
-        fields = ("id", "pcap", "created")
+        fields = ("id", "cap", "created")
 
 
 report_schema = ReportSchema()
