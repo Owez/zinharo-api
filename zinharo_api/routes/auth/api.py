@@ -5,7 +5,7 @@ from zinharo_api import limiter
 from zinharo_api.models import db, Client
 from zinharo_api.schemas import client_schema
 from webargs.flaskparser import use_args
-from .schemas import AuthGetSchema
+from .schemas import AuthPostSchema, AuthGetSchema
 
 auth_api_blueprint = Blueprint("auth_api", __name__)
 auth_restful = Api(auth_api_blueprint, "/auth")
@@ -15,15 +15,28 @@ class AuthApi(Resource):
     """Authorization path for clients to sign up and log in to get their jwt
     session tokens"""
 
-    # decorators = [
-    #     limiter.limit("2 per minute", methods=["GET"]) # NOTE: not this slow
-    # ]
+    decorators = [limiter.limit("1 per hour, 2 per day", methods=["POST"])]
 
-    # @use_args(AuthPostSchema())
-    # def post(self, args):
-    #     """Client sign-up (currently disabled for debug)"""
+    @use_args(AuthPostSchema())
+    def post(self, args):
+        """Client sign-up (currently disabled for debug)"""
 
-    #     pass
+        found_dupe = Client.query.filter_by(username=args["username"]).first()
+
+        if found_dupe:
+            return {"status": "username taken"}, 403
+
+        bio = args["bio"] if "bio" in args else None
+
+        new_client = Client(args["username"], args["password"], bio)
+
+        db.session.add(new_client)
+        db.session.commit()
+
+        return (
+            {"status": "success", "body": {"client": client_schema.dump(new_client)}},
+            200,
+        )
 
     @use_args(AuthGetSchema(), location="querystring")
     def get(self, args):
@@ -37,11 +50,10 @@ class AuthApi(Resource):
         return (
             {
                 "status": "success",
-                "body": {
-                    "token": create_access_token(got_client.id),
-                },
+                "body": {"token": create_access_token(got_client.id),},
             },
             200,
         )
-    
+
+
 auth_restful.add_resource(AuthApi, "/")

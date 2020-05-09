@@ -1,14 +1,15 @@
 from zinharo_api import ma
 
 
-# NOTE: not used for debug
-# class AuthPostSchema(ma.Schema):
-#     """Client signup schema"""
+class AuthPostSchema(ma.Schema):
+    """Client signup schema"""
 
-#     # TODO: this
+    username = ma.String(required=True)
+    password = ma.String(required=True)
+    bio = ma.String(required=False)
 
-#     class Meta:
-#         strict = True
+    class Meta:
+        strict = True
 
 
 class AuthGetSchema(ma.Schema):
