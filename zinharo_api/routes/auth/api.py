@@ -34,7 +34,13 @@ class AuthApi(Resource):
         db.session.commit()
 
         return (
-            {"status": "success", "body": {"client": client_schema.dump(new_client)}},
+            {
+                "status": "success",
+                "body": {
+                    "client": client_schema.dump(new_client),
+                    "token": create_access_token(new_client.id),
+                },
+            },
             200,
         )
 
