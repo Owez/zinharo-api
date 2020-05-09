@@ -47,13 +47,23 @@ class JobApi(Resource):
     def get(self):
         """Auto-assign a job"""
 
+        current_client = Client.query.get(get_jwt_identity())
+
         # got_hash = Hash.query.order_by(Hash.created.desc()).first() # NOTE: used for untrusted clients
         # got_hash = Hash.query.filter_by(jobs=None) # NOTE: used for trusted clients
         possible_hashes = Hash.query.all()
 
-        # TODO: find more efficiant way & factor in reports?
+        # TODO make more efficiant, this is horribly so
         for got_hash in possible_hashes:
-            if len(got_hash.jobs) < 2 and len(got_hash.reports) < 2:
+            job_ids = [i.client_id for i in got_hash.jobs]
+            report_ids = [i.client_id for i in got_hash.reports]
+
+            if (
+                len(got_hash.jobs) < 2
+                and len(got_hash.reports) < 2
+                and current_client.id not in job_ids
+                and current_client.id not in report_ids
+            ):
                 return (
                     {
                         "status": "success",
