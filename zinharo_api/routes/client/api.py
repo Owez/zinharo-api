@@ -36,7 +36,7 @@ class ClientApi(Resource):
                 200,
             )
 
-        return {"status": "not found"}, 404
+        return {"status": "client not found"}, 404
 
     @jwt_required
     @use_args(ClientPatchSchema())
