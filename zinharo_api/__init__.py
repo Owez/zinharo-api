@@ -69,14 +69,12 @@ def fake_adminauth():
 
 
 # NOTE: keep imports here
-from .routes.frontend import frontend_blueprint
-from .routes.report import report_api_blueprint  # TODO: test with postman
-from .routes.client import client_api_blueprint  # TODO: test with postman
+from .routes.report import report_api_blueprint
+from .routes.client import client_api_blueprint
 from .routes.auth import auth_api_blueprint
 from .routes.hash import hash_api_blueprint
 from .routes.job import job_api_blueprint
 
-app.register_blueprint(frontend_blueprint, url_prefix="/")  # not an api route
 app.register_blueprint(report_api_blueprint, url_prefix=config.API_PREFIX)
 app.register_blueprint(client_api_blueprint, url_prefix=config.API_PREFIX)
 app.register_blueprint(auth_api_blueprint, url_prefix=config.API_PREFIX)
