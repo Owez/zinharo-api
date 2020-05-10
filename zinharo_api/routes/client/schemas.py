@@ -4,7 +4,8 @@ from zinharo_api import ma
 class ClientGetSchema(ma.Schema):
     """Schema for querying for a client"""
 
-    username = ma.String(required=True)
+    id = ma.Integer(required=False)
+    username = ma.String(required=False)
 
     class Meta:
         strict = True

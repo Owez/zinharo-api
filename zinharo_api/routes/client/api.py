@@ -20,7 +20,12 @@ class ClientApi(Resource):
     def get(self, args):
         """Query for a client"""
 
-        got_client = Client.query.filter_by(username=args["username"]).first()
+        if len(args) == 0:
+            return {"status": "no query provided"}, 400
+        elif "id" in args: # favour id
+            got_client = Client.query.get(args["id"])
+        elif "username" in args:
+            got_client = Client.query.filter_by(username=args["username"]).first()
 
         if got_client is not None:
             return (

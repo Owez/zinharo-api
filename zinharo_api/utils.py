@@ -32,7 +32,7 @@ class Config:
         defaulting to `/api` (@ API_PREFIX_DEFAULT) if not found.
         """
 
-        API_PREFIX_DEFAULT = "/api"
+        API_PREFIX_DEFAULT = "" # none for production with `api.` subdomain
 
         try:
             return self._get_var("API_PREFIX")
