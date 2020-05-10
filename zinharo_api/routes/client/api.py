@@ -22,7 +22,7 @@ class ClientApi(Resource):
 
         if len(args) == 0:
             return {"status": "no query provided"}, 400
-        elif "id" in args: # favour id
+        elif "id" in args:  # favour id
             got_client = Client.query.get(args["id"])
         elif "username" in args:
             got_client = Client.query.filter_by(username=args["username"]).first()
@@ -56,7 +56,13 @@ class ClientApi(Resource):
 
         db.session.commit()
 
-        return {"status": "success", "body": {"client": client_schema.dump(current_client)}}, 200
+        return (
+            {
+                "status": "success",
+                "body": {"client": client_schema.dump(current_client)},
+            },
+            200,
+        )
 
     @jwt_required
     def delete(self):
