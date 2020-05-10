@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file
+from flask import Flask, send_file
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_sqlalchemy import SQLAlchemy
@@ -30,7 +30,7 @@ limiter = Limiter(
 def error_404(_exception):
     """404 error handling"""
 
-    return render_template("error_404.html"), 404
+    return {"status": "endpoint not found"}, 404
 
 
 @app.route(f"{config.API_PREFIX}/min_version/")
