@@ -60,14 +60,6 @@ def download_windows():
     return send_file(path, as_attachment=True)
 
 
-@limiter.limit("1 per year")
-@app.route(f"/{config.API_PREFIX}/adminauth/")
-def fake_adminauth():
-    """Joke designed to annoy and throw people off"""
-
-    return "Just contact me instead of falling for my obvious trap..", 200
-
-
 # NOTE: keep imports here
 from .routes.report import report_api_blueprint
 from .routes.client import client_api_blueprint
